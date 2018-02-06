@@ -30,8 +30,9 @@ class NewPlanTemplate extends Component {
                 <h1>새로운 계획 작성</h1>
                 <PlanTemplateForm 
                     handleSubmit={NewPlanTemplateActions.requestPostPlanTemplate} 
-                    taskTemplate={this.props.taskTemplate}
+                    taskTemplateItem={this.props.taskTemplateItem}
                     taskTemplateList={this.props.taskTemplateList}
+                    formType={this.props.formType}
                     toggle={this.props.toggle}
                     NewTaskTemplateListActions={this.props.NewTaskTemplateListActions}
                 />
@@ -43,7 +44,8 @@ class NewPlanTemplate extends Component {
 export default connect(
     (state) => ({
         taskTemplateList: state.newTaskTemplateList.get('taskTemplateList').toJS(),
-        taskTemplate: state.newTaskTemplateList.get('taskTemplate').toJS(),
+        taskTemplateItem: state.newTaskTemplateList.get('taskTemplateItem').toJS(),
+        formType: state.newTaskTemplateList.get('formType'),
         toggle: state.newTaskTemplateList.get('toggle'),
         alertStatus: state.alert.get('status'),
     }),

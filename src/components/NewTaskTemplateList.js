@@ -14,6 +14,7 @@ class NewTaskTemplateList extends Component {
                 taskTemplate={taskTemplate} 
                 NewTaskTemplateListActions={NewTaskTemplateListActions}
                 modal={modal}
+                index={i}
                 key={i} />
         );
 

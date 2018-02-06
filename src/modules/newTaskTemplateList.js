@@ -1,10 +1,12 @@
-import { fromJS } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import { createAction, handleActions } from "redux-actions";
 
 import * as actionTypes from './actionTypes'
 
 export const addNewTaskTemplate = createAction(actionTypes.ADD_NEW_TASK_TEMPLATE); // taskTemplate
+export const onAddNewTaskTemplate = createAction(actionTypes.ON_ADD_NEW_TASK_TEMPLATE); // taskTemplate
 export const editNewTaskTemplate = createAction(actionTypes.EDIT_NEW_TASK_TEMPLATE);  // taskTemplate, toggle
+export const updateNewTaskTemplate = createAction(actionTypes.UPDATE_NEW_TASK_TEMPLATE); 
 export const upNewTaskTemplate = createAction(actionTypes.UP_NEW_TASK_TEMPLATE); // index
 export const downNewTaskTemplate = createAction(actionTypes.DOWN_NEW_TASK_TEMPLATE); // index
 export const removeNewTaskTemplate = createAction(actionTypes.REMOVE_NEW_TASK_TEMPLATE); // index
@@ -12,8 +14,11 @@ export const toggleNewTaskTemplate = createAction(actionTypes.TOGGLE_NEW_TASK_TE
 
 const newTaskTemplateInitialState = fromJS({
     taskTemplateList: [],
-    taskTemplate: {},
-    toggle: false
+    taskTemplateItem: {},
+    toggle: false,
+    formType: 'NEW',
+    index: -1,
+    data: {}
 });
 
 export default handleActions ({
@@ -26,6 +31,19 @@ export default handleActions ({
         return state.set('taskTemplateList', taskTemplateList.push(
             fromJS(action.payload)
         ))
+    },
+    [actionTypes.ON_ADD_NEW_TASK_TEMPLATE]: (state, action) => {
+        return state.set('formType', 'NEW')
+    },
+    [actionTypes.EDIT_NEW_TASK_TEMPLATE]: (state, action) => {
+        return state.set('taskTemplateItem', Map(action.payload.taskTemplateItem))
+                    .set('index', action.payload.index)
+                    .set('formType', 'EDIT')
+    },
+    [actionTypes.UPDATE_NEW_TASK_TEMPLATE]: (state, action) => {
+        const taskTemplateList = state.get('taskTemplateList');
+
+        return state.set('taskTemplateList', taskTemplateList.set(action.payload.index, action.payload.taskTemplateItem))
     },
     [actionTypes.UP_NEW_TASK_TEMPLATE]: (state, action) => {
         const taskTemplateList = state.get('taskTemplateList').toJS();
@@ -150,7 +168,11 @@ export default handleActions ({
         console.log(taskTemplateList);
         return state.set('taskTemplateList', fromJS(taskTemplateList));
     },
-    [actionTypes.REMOVE_NEW_TASK_TEMPLATE]: (state, action) => state,
+    [actionTypes.REMOVE_NEW_TASK_TEMPLATE]: (state, action) => {
+        const taskTemplateList = state.get('taskTemplateList')
+
+        return state.set('taskTemplateList', taskTemplateList.delete(action.payload))
+    },
     [actionTypes.TOGGLE_NEW_TASK_TEMPLATE]: (state, action) => {
         return state.set('toggle', action.payload);
     }

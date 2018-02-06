@@ -2,6 +2,9 @@
 
 ## 추천 계획 작성 페이지
 - [x] 기본적인 API 연결 구현
+- [x] Alert 구현
+- [x] NewTaskTemplate 삭제
+- [] NewTaskTemplate 수정
 - [] formValidation 구현
 
 ### 추가로 들어가야 할 것들

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
-import { connect  } from 'react-redux';
+import { Field, reduxForm, formValueSelector, change } from 'redux-form/immutable';
+import { connect } from 'react-redux';
 
 class TaskTemplateForm extends Component {
     constructor(props) {
@@ -18,12 +18,21 @@ class TaskTemplateForm extends Component {
         };
     
         this.toggle = this.toggle.bind(this);
+        this.onAdd = this.onAdd.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
+        this.handleUpdateClick = this.handleUpdateClick.bind(this);
       }
     
     toggle() {
-        const { NewTaskTemplateListActions, modal } = this.props;
+        const { NewTaskTemplateListActions, modal, reset } = this.props;
         NewTaskTemplateListActions.toggleNewTaskTemplate(!modal);
+        reset();
+    }
+
+    onAdd() {
+        const { NewTaskTemplateListActions } = this.props;
+        NewTaskTemplateListActions.onAddNewTaskTemplate();
+        this.toggle();
     }
 
     handleAddClick() {
@@ -54,16 +63,24 @@ class TaskTemplateForm extends Component {
         }
         console.log(taskTemplate);
         NewTaskTemplateListActions.addNewTaskTemplate(taskTemplate);
-        reset();
+        
+        this.toggle();
+    }
+
+    handleUpdateClick() {
+        const { NewTaskTemplateListActions, taskTemplate, index, reset } = this.props;
+        NewTaskTemplateListActions.updateNewTaskTemplate({index: index, taskTemplateItem: taskTemplate})
+        
         this.toggle();
     }
 
     render() {
-        const { modal } = this.props;
+        const { modal, formType } = this.props;        
+        console.log(formType);
 
         return (
             <div>
-                <Button color="primary" size="lg" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+                <Button color="primary" size="lg" onClick={this.onAdd}>{this.props.buttonLabel}</Button>
                 <Modal isOpen={modal} fade={false} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>공부법 항목 추가</ModalHeader>
                 <ModalBody>
@@ -151,7 +168,10 @@ class TaskTemplateForm extends Component {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.handleAddClick}>추가</Button>{' '}
+                    {formType === "NEW" ? <Button color="primary" onClick={this.handleAddClick}>추가</Button> : (
+                        formType === "EDIT" ? <Button color="primary" onClick={this.handleUpdateClick}>수정</Button> : null
+                    )}
+                    {' '}
                     <Button color="secondary" onClick={this.toggle}>취소</Button>
                 </ModalFooter>
                 </Modal>
@@ -168,6 +188,7 @@ const selector = formValueSelector('taskTemplate');
 
 export default connect(
     state => ({
+        index: state.newTaskTemplateList.get('index'),
         taskTemplate: {
             name: selector(state, 'name'),
             description: selector(state, 'description'),

@@ -13,11 +13,10 @@ class PlanTemplateForm extends Component {
     }
 
     render() {
-        // const handleSubmit = this.props.onSubmit;
-        const { handleSubmit, taskTemplate, taskTemplateList, toggle, NewTaskTemplateListActions, pristine, submitting } = this.props;
+        const { formType, taskTemplateItem, taskTemplateList, toggle, NewTaskTemplateListActions, pristine, submitting } = this.props;
 
         return (
-            <Form onSubmit={handleSubmit}>
+            <Form>
                 <FormGroup row>
                     <Label for="name" sm={4}>추천계획 이름</Label>
                     <Col sm={8}>
@@ -92,7 +91,7 @@ class PlanTemplateForm extends Component {
                 <Row>
                     <Col sm={10}>
                         <NewTaskTemplateList 
-                            taskTemplate={taskTemplate}
+                            taskTemplateItem={taskTemplateItem}
                             modal={toggle}
                             taskTemplateList={taskTemplateList}
                             NewTaskTemplateListActions={NewTaskTemplateListActions}
@@ -101,7 +100,8 @@ class PlanTemplateForm extends Component {
                     <Col sm={2}>
                         <TaskTemplateForm 
                             buttonLabel="+상세 일정 추가"
-                            taskTemplate={taskTemplate}
+                            taskTemplateItem={taskTemplateItem}
+                            formType={formType}
                             modal={toggle}
                             NewTaskTemplateListActions={NewTaskTemplateListActions}
                             taskTemplateList={taskTemplateList}
