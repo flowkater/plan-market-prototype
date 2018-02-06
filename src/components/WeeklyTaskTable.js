@@ -4,15 +4,18 @@ import { Table } from 'reactstrap';
 
 class WeeklyTaskTable extends Component {
     render() {
-        const taskTemplateRow = (
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>test</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+        const { taskTemplateList } = this.props;
+        console.log(taskTemplateList, "111");
+
+        const taskTemplateRow = taskTemplateList.map((taskTemplate, i) => 
+            <tr key={i}>
+                {taskTemplate.monday ? <td>{taskTemplate.name}</td> : <td></td>}
+                {taskTemplate.tuesday ? <td>{taskTemplate.name}</td> : <td></td>}
+                {taskTemplate.wednesday ? <td>{taskTemplate.name}</td> : <td></td>}
+                {taskTemplate.thursday ? <td>{taskTemplate.name}</td> : <td></td>}
+                {taskTemplate.friday ? <td>{taskTemplate.name}</td> : <td></td>}
+                {taskTemplate.saturday ? <td>{taskTemplate.name}</td> : <td></td>}
+                {taskTemplate.sunday ? <td>{taskTemplate.name}</td> : <td></td>}
             </tr>
         );
 

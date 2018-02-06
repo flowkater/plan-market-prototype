@@ -10,10 +10,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { App } from './containers';
 import registerServiceWorker from './registerServiceWorker';
 
-import reducer from './reducers';
+import reducer from './modules';
 import rootSaga from "./sagas";
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
+
 
 
 const sagaMiddleware = createSagaMiddleware();

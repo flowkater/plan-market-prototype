@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Col, Row, Jumbotron, Button } from "reactstrap";
-import { Field, reduxForm } from 'redux-form';
-import { ContentsForm, WeeklyTaskTable, TaskTemplateForm } from ".";
+import { Form, FormGroup, Label, Col, Row, Button } from "reactstrap";
+import { Field, reduxForm } from 'redux-form/immutable';
+
+import { ContentsForm, WeeklyTaskTable, TaskTemplateForm, NewTaskTemplateList } from ".";
 
 class PlanTemplateForm extends Component {
+
+    handleClick(e) {
+        e.preventDefault();
+        const { handleSubmit } = this.props;
+        handleSubmit();
+    }
+
     render() {
-        const handleSubmit = this.props.onSubmit;
+        // const handleSubmit = this.props.onSubmit;
+        const { handleSubmit, taskTemplate, taskTemplateList, toggle, NewTaskTemplateListActions, pristine, submitting } = this.props;
 
         return (
             <Form onSubmit={handleSubmit}>
@@ -30,6 +39,7 @@ class PlanTemplateForm extends Component {
                             className="form-control"
                             name="level"
                             component="select">
+                            <option />
                             <option>초수</option>
                             <option>중수</option>
                             <option>고수</option>
@@ -70,22 +80,38 @@ class PlanTemplateForm extends Component {
                 <FormGroup>
                     <Label for="planDescription">추천 계획 소개/설명</Label>
                     <Field 
-                            className="form-control" 
-                            id="planDescription"
-                            name="description" 
-                            component="textarea" 
-                            placeholder="추천 계획에 대한 자세한 설명을 적어주세요." />
+                        className="form-control" 
+                        id="planDescription"
+                        name="description" 
+                        component="textarea" 
+                        placeholder="추천 계획에 대한 자세한 설명을 적어주세요." />
                 </FormGroup>
+                <br />
+                <h4>상세 공부 스케줄</h4>
+                <hr />
                 <Row>
                     <Col sm={10}>
-                        <Jumbotron />
+                        <NewTaskTemplateList 
+                            taskTemplate={taskTemplate}
+                            modal={toggle}
+                            taskTemplateList={taskTemplateList}
+                            NewTaskTemplateListActions={NewTaskTemplateListActions}
+                        />
                     </Col>
                     <Col sm={2}>
-                        <TaskTemplateForm buttonLabel="+상세 일정 추가" />
+                        <TaskTemplateForm 
+                            buttonLabel="+상세 일정 추가"
+                            taskTemplate={taskTemplate}
+                            modal={toggle}
+                            NewTaskTemplateListActions={NewTaskTemplateListActions}
+                            taskTemplateList={taskTemplateList}
+                        />
                     </Col>
                 </Row>
-                <WeeklyTaskTable />
-                <Button>submit</Button>
+                <WeeklyTaskTable
+                    taskTemplateList={taskTemplateList} 
+                />
+                <Button type="button" onClick={this.handleClick.bind(this)} disabled={pristine || submitting}>Submit</Button>
             </Form>
         );
     }

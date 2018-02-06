@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, FormGroup, Label } from "reactstrap";
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form/immutable';
 
 class ContentsForm extends Component {
     render() {

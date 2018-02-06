@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
+import { connect  } from 'react-redux';
 
 class TaskTemplateForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          modal: false,
           weekdays: [
               {key: 'monday', value: '월'}, 
               {key: 'tuesday',value:'화'}, 
@@ -18,21 +18,53 @@ class TaskTemplateForm extends Component {
         };
     
         this.toggle = this.toggle.bind(this);
+        this.handleAddClick = this.handleAddClick.bind(this);
       }
     
     toggle() {
-        this.setState({
-            modal: !this.state.modal
-        });
+        const { NewTaskTemplateListActions, modal } = this.props;
+        NewTaskTemplateListActions.toggleNewTaskTemplate(!modal);
+    }
+
+    handleAddClick() {
+        const { NewTaskTemplateListActions, taskTemplate, taskTemplateList, reset } = this.props;
+        const order = taskTemplateList.length + 1
+        taskTemplate.assignment_type = "day_of_week";
+        taskTemplate.order = order;
+        if(taskTemplate.monday){
+            taskTemplate.monday_order = order
+        }
+        if(taskTemplate.tuesday){
+            taskTemplate.tuesday_order = order
+        }
+        if(taskTemplate.wednesday){
+            taskTemplate.wednesday_order = order
+        }
+        if(taskTemplate.thursday){
+            taskTemplate.thursday_order = order
+        }
+        if(taskTemplate.friday){
+            taskTemplate.friday_order = order
+        }
+        if(taskTemplate.saturday){
+            taskTemplate.saturday_order = order
+        }
+        if(taskTemplate.sunday){
+            taskTemplate.sunday_order = order
+        }
+        console.log(taskTemplate);
+        NewTaskTemplateListActions.addNewTaskTemplate(taskTemplate);
+        reset();
+        this.toggle();
     }
 
     render() {
-
+        const { modal } = this.props;
 
         return (
             <div>
                 <Button color="primary" size="lg" onClick={this.toggle}>{this.props.buttonLabel}</Button>
-                <Modal isOpen={this.state.modal} fade={false} toggle={this.toggle} className={this.props.className}>
+                <Modal isOpen={modal} fade={false} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>공부법 항목 추가</ModalHeader>
                 <ModalBody>
                     <Form>
@@ -54,9 +86,10 @@ class TaskTemplateForm extends Component {
                                     className="form-control"
                                     name="task_template_type"
                                     component="select">
-                                    <option>예습</option>
-                                    <option>학습</option>
-                                    <option>복습</option>
+                                    <option />
+                                    <option value="preview">예습</option>
+                                    <option value="learning">학습</option>
+                                    <option value="review">복습</option>
                                 </Field>
                             </Col>
                         </FormGroup>
@@ -104,10 +137,21 @@ class TaskTemplateForm extends Component {
                                 </Col>
                             ))}
                         </FormGroup>
+                        <FormGroup row>
+                            <Label for="description" sm={4}>상세 설명</Label>
+                            <Col sm={8}>
+                                <Field 
+                                    className="form-control" 
+                                    id="task-template-form-description"
+                                    name="description" 
+                                    component="textarea" 
+                                    placeholder="상세 항목에 대한 자세한 설명을 적어주세요." />
+                            </Col>
+                        </FormGroup>
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.toggle}>추가</Button>{' '}
+                    <Button color="primary" onClick={this.handleAddClick}>추가</Button>{' '}
                     <Button color="secondary" onClick={this.toggle}>취소</Button>
                 </ModalFooter>
                 </Modal>
@@ -117,7 +161,28 @@ class TaskTemplateForm extends Component {
 }
 
 TaskTemplateForm = reduxForm({
-    form: 'taskTemplateForm'
+    form: 'taskTemplate'
 })(TaskTemplateForm)
 
-export default TaskTemplateForm;
+const selector = formValueSelector('taskTemplate');
+
+export default connect(
+    state => ({
+        taskTemplate: {
+            name: selector(state, 'name'),
+            description: selector(state, 'description'),
+            task_template_type: selector(state, 'task_template_type'),
+            learning_minutes: selector(state, 'learning_minutes'),
+            amount: selector(state, 'amount'),
+            unit: selector(state, 'unit'),
+            monday: selector(state, 'monday'),
+            tuesday: selector(state, 'tuesday'),
+            wednesday: selector(state, 'wednesday'), 
+            thursday: selector(state, 'thursday'),
+            friday: selector(state, 'friday'),
+            saturday: selector(state, 'saturday'),
+            sunday: selector(state, 'sunday')
+        }
+    })
+)(TaskTemplateForm);
+
