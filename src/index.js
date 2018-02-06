@@ -13,6 +13,9 @@ import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducers';
 import rootSaga from "./sagas";
 
+import 'bootstrap/dist/css/bootstrap.css';
+
+
 const sagaMiddleware = createSagaMiddleware();
 
 const configureStore = () => {
