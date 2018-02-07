@@ -9,6 +9,14 @@ class PlanTemplate extends Component {
             return <p key={key}>{item}<br/></p>
         }))
     }
+
+    componentWillMount() {
+        const { match, planTemplate } = this.props
+
+        if(match.params.plan_template_id && !planTemplate) {
+            this.props.requestGetPlanTemplate({planTemplateId: match.params.plan_template_id})
+        }
+    }
     
     render() {
         const { planTemplate } = this.props

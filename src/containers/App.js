@@ -9,7 +9,7 @@ class App extends Component {
             <div>
                 <Route exact path="/" component={ NewPlanTemplate } />
                 <Route path="/plan_templates" component={ PlanTemplateListContainer } />
-                <Route exact path="/plan_templates/:plan_template_id" component={ PlanTemplateContainer } />
+                <Route path="/plan_templates/:plan_template_id" component={ PlanTemplateContainer } />
                 <Route path="/new" component={ NewPlanTemplate } />
             </div>
         );
