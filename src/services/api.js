@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const URL = "http://127.0.0.1:5000";
+// const URL = "https://55x12biogf.execute-api.ap-northeast-2.amazonaws.com/staging";
 
 const res = axios.create({
     baseURL: URL,

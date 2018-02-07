@@ -6,10 +6,9 @@ import './App.scss';
 class App extends Component {
     render() {
         return (
-            <div>
+            <div className="App">
                 <Route exact path="/" component={ NewPlanTemplate } />
                 <Route path="/plan_templates" component={ PlanTemplateListContainer } />
-                <Route path="/plan_templates/:plan_template_id" component={ PlanTemplateListContainer } />
                 <Route path="/new" component={ NewPlanTemplate } />
             </div>
         );
