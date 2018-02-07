@@ -4,8 +4,6 @@ import { NewTaskTemplateItem } from ".";
       
 
 class NewTaskTemplateList extends Component {
-   
-
     render() {
         const { taskTemplateList, NewTaskTemplateListActions, modal } = this.props;
 
