@@ -1,0 +1,17 @@
+.AppNavbar {
+  background-color: cadetblue;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  .navbar-btn {
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+    color: #fff;
+
+    &:hover {
+      background-color: rgb(29, 91, 94);
+    }
+  }
+}

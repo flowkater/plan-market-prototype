@@ -1,0 +1,16 @@
+.Home {
+  width: 100%;
+  height: 90%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .jumbo {
+    padding: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+}
