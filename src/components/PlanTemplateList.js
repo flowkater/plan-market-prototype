@@ -8,8 +8,6 @@ class PlanTemplateList extends Component {
         super(props)
 
         this.toPlanTemplateItem = this.toPlanTemplateItem.bind(this)
-
-        console.log(this.props);
     }
 
     toPlanTemplateItem(planTemplate, index) {
@@ -26,10 +24,6 @@ class PlanTemplateList extends Component {
 
     render() {
         const { planTemplateList } = this.props
-
-        console.log('planTemplateList');
-        console.log(planTemplateList);
-        
 
         return (
             <div>

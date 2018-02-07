@@ -21,8 +21,64 @@ class TaskTemplateTable extends Component {
                     <tr>
                         <td>
                         {
-                            this.props.taskTemplates.map((task_template) => {
-                                return (<TaskTemplateItem TaskTemplate={task_template} />)
+                            this.props.taskTemplates.filter((task_template) => {
+                                return task_template.monday
+                            }).map((task_template, index) => {
+                                return (<TaskTemplateItem key={index} TaskTemplate={task_template} />)
+                            })
+                        }
+                        </td>
+                        <td>
+                        {
+                            this.props.taskTemplates.filter((task_template) => {
+                                return task_template.tuesday
+                            }).map((task_template, index) => {
+                                return (<TaskTemplateItem key={index} TaskTemplate={task_template} />)
+                            })
+                        }
+                        </td>
+                        <td>
+                        {
+                            this.props.taskTemplates.filter((task_template) => {
+                                return task_template.wednesday
+                            }).map((task_template, index) => {
+                                return (<TaskTemplateItem key={index} TaskTemplate={task_template} />)
+                            })
+                        }
+                        </td>
+                        <td>
+                        {
+                            this.props.taskTemplates.filter((task_template) => {
+                                return task_template.thursday
+                            }).map((task_template, index) => {
+                                return (<TaskTemplateItem key={index} TaskTemplate={task_template} />)
+                            })
+                        }
+                        </td>
+                        <td>
+                        {
+                            this.props.taskTemplates.filter((task_template) => {
+                                return task_template.friday
+                            }).map((task_template, index) => {
+                                return (<TaskTemplateItem key={index} TaskTemplate={task_template} />)
+                            })
+                        }
+                        </td>
+                        <td>
+                        {
+                            this.props.taskTemplates.filter((task_template) => {
+                                return task_template.saturday
+                            }).map((task_template, index) => {
+                                return (<TaskTemplateItem key={index} TaskTemplate={task_template} />)
+                            })
+                        }
+                        </td>
+                        <td>
+                        {
+                            this.props.taskTemplates.filter((task_template) => {
+                                return task_template.sunday
+                            }).map((task_template, index) => {
+                                return (<TaskTemplateItem key={index} TaskTemplate={task_template} />)
                             })
                         }
                         </td>

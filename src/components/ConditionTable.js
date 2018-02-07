@@ -15,8 +15,9 @@ class ConditionTable extends Component {
                     return "회독 횟수";
                 default:
                     return ""
-            };
+            }
         }
+
         let value_from = (condition) => {
             switch (condition.value_type) {
                 case 'int':
@@ -27,7 +28,7 @@ class ConditionTable extends Component {
                     return condition.boolean_value;
                 default:
                     return ""
-            };
+            }
         }
 
         return (
@@ -35,9 +36,9 @@ class ConditionTable extends Component {
                 <Table>
                     <tbody>
                         {
-                            this.props.conditions.map(condition => {
+                            this.props.conditions.map((condition, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <th>{title_from(condition)}</th>
                                         <td>{value_from(condition)}</td>
                                     </tr>

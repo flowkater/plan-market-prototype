@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { TaskTemplateTable, ConditionTable } from '.';
+import './PlanTemplate.scss'
 
 class PlanTemplate extends Component {
     state = {
@@ -105,8 +106,7 @@ class PlanTemplate extends Component {
                     <TaskTemplateTable taskTemplates={this.state.plan_template.task_templates} />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                    <Button color="secondary" onClick={this.toggle}>닫기</Button>
                 </ModalFooter>
                 </Modal>
             </div>
