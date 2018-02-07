@@ -5,10 +5,6 @@
   border-bottom-style: solid;
   border-bottom-width: 1px;
   height: fit-content;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
   width: 100%;
 }
 
@@ -29,7 +25,14 @@
 }
 
 .PlanTemplateItemButton {
+  display: block;
+  height: 100%;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
   text-decoration: none !important;
+  width: 100%;
 }
 
 .Name,
@@ -37,6 +40,8 @@
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .Name {
