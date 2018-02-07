@@ -1,9 +1,11 @@
 import App from './App';
 import NewPlanTemplate from './NewPlanTemplate';
-import IndexPlanTemplate from './IndexPlanTemplate';
+import PlanTemplateListContainer from './PlanTemplateListContainer';
+import PlanTemplateContainer from './PlanTemplateContainer';
 
 export { 
     App,
     NewPlanTemplate,
-    IndexPlanTemplate
+    PlanTemplateListContainer,
+    PlanTemplateContainer
  }

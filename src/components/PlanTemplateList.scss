@@ -1,0 +1,18 @@
+@import "utils";
+
+.PlanTemplateList {
+  background-color: #fafafa;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.PlanTemplateItemContainer {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+    0 5px 12px rgba(133, 133, 133, 0.22);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  width: 75%;
+}
