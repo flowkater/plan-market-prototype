@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import { Table } from 'reactstrap';
 
 const conditionNameMap = {
@@ -43,5 +44,9 @@ class ConditionTable extends Component {
         )
     }
 }
+
+ConditionTable.propTypes = {
+    conditions: PropTypes.array.isRequired
+};
 
 export default ConditionTable

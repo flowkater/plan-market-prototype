@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import { Table } from 'reactstrap';
 import { TaskTemplateItem } from '.'
 import './TaskTemplateTable.scss'
@@ -103,5 +104,9 @@ class TaskTemplateTable extends Component {
         )
     }
 }
+
+TaskTemplateTable.propTypes = {
+    taskTemplates: PropTypes.array.isRequired
+};
 
 export default TaskTemplateTable
