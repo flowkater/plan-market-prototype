@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    requestGetPlanTemplate: () => dispatch(ActionCreators.requestGetPlanTemplate())
+    requestGetPlanTemplate: () => dispatch(ActionCreators.requestGetPlanTemplate()),
+    closeModal: () => dispatch(ActionCreators.closeModal())
 })
 
 const PlanTemplateContainer = connect(mapStateToProps, mapDispatchToProps)(PlanTemplate)

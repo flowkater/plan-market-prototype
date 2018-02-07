@@ -37,3 +37,5 @@ export const requestUpdateTaskTemplateFailure = createAction(ActionTypes.REQUEST
 export const requestDeleteTaskTemplate = createAction(ActionTypes.REQUEST_DELETE_TASK_TEMPLATE);
 export const requestDeleteTaskTemplateSuccess = createAction(ActionTypes.REQUEST_DELETE_TASK_TEMPLATE_SUCCESS);
 export const requestDeleteTaskTemplateFailure = createAction(ActionTypes.REQUEST_DELETE_TASK_TEMPLATE_FAILURE);
+
+export const closeModal = createAction(ActionTypes.CLOSE_MODAL);

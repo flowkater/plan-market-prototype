@@ -19,7 +19,8 @@ const initialState = fromJS({
 export default handleActions(
     {
         [ActionTypes.REQUEST_GET_PLAN_TEMPLATE_LIST_SUCCESS]: (state, action) => state.set("planTemplateList", fromJS(action.payload.planTemplateList)),
-        [ActionTypes.REQUEST_GET_PLAN_TEMPLATE_SUCCESS]: (state, action) => state.set("planTemplate", fromJS(action.payload.planTemplate))
+        [ActionTypes.REQUEST_GET_PLAN_TEMPLATE_SUCCESS]: (state, action) => state.set("planTemplate", fromJS(action.payload.planTemplate)),
+        [ActionTypes.CLOSE_MODAL]: (state, action) => state.set("planTemplate", null)
     },
     initialState
 );
