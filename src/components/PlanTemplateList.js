@@ -14,7 +14,8 @@ class PlanTemplateList extends Component {
         return (
             <PlanTemplateItem 
                 key={index} 
-                planTemplate={planTemplate}/>
+                planTemplate={planTemplate}
+                requestGetPlanTemplate={this.props.requestGetPlanTemplate}/>
         )
     }
 

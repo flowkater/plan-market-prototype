@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 class PlanTemplateItem extends Component {
     render() {
-        const { planTemplate } = this.props
+        const { planTemplate, requestGetPlanTemplate } = this.props
         return (
             <div>
-                <Link to={"/plan_templates/" + planTemplate.id}>
+                <Link to={"/plan_templates/" + planTemplate.id} onClick={() => requestGetPlanTemplate({planTemplateId: planTemplate.id})}>
                     <h3>{planTemplate.name}</h3>
                     <p>{planTemplate.description}</p>
                 </Link>
