@@ -88,15 +88,21 @@ class PlanTemplate extends Component {
         }
     }
 
+    convertNewLine(text) {
+        return (text.split('\n').map((item, key) => {
+            return <p key={key}>{item}<br/></p>
+        }))
+    }
+    
     render() {
         return (
             <div>        
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>{this.state.plan_template.name}</ModalHeader>
                 <ModalBody>
-                    <ConditionTable />
-                    {this.state.plan_template.description}
-                    <TaskTemplateTable />
+                    <ConditionTable conditions={this.state.plan_template.conditions}/>
+                    {this.convertNewLine(this.state.plan_template.description)}
+                    <TaskTemplateTable taskTemplates={this.state.plan_template.task_templates} />
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}

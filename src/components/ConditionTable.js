@@ -2,43 +2,48 @@ import React, { Component } from 'react'
 import { Table } from 'reactstrap';
 
 class ConditionTable extends Component {
-    state = {
-        conditions: [
-            {
-                name: "level",
-                value_type: "string",
-                string_value: "고수"
-            },
-            {
-                name: "term",
-                value_type: "int",
-                int_value: 60
-            },
-            {
-                name: "repeat",
-                value_type: "int",
-                int_value: 1
-            }
-        ]
-    }
-
     render() {
+        let title_from = (condition) => {
+            switch (condition.name) {
+                case 'level':
+                    return "학습자 수준";
+                case 'due':
+                    return "시험까지 남은 기간";
+                case 'term':
+                    return "학습 기간";
+                case 'repeat':
+                    return "회독 횟수";
+                default:
+                    return ""
+            };
+        }
+        let value_from = (condition) => {
+            switch (condition.value_type) {
+                case 'int':
+                    return condition.int_value;
+                case 'string':
+                    return condition.string_value;
+                case 'boolean':
+                    return condition.boolean_value;
+                default:
+                    return ""
+            };
+        }
+
         return (
             <div>
                 <Table>
                     <tbody>
-                        <tr>
-                            <th>Mark</th>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th>Jacob</th>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th>Larry</th>
-                            <td>the Bird</td>
-                        </tr>
+                        {
+                            this.props.conditions.map(condition => {
+                                return (
+                                    <tr>
+                                        <th>{title_from(condition)}</th>
+                                        <td>{value_from(condition)}</td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </Table>
             </div>
