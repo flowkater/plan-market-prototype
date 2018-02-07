@@ -19,6 +19,22 @@ function* getPlanTemplateList(action) {
     }
 }
 
+function* getPlanTemplate(action) {
+    try {
+        const response = yield call(api.getPlanTemplate, action.payload.planTemplateId)
+        if (response.data.plan_template) {
+            const payload = {
+                planTemplate: response.data.plan_template // TODO: JSON 네이밍을 Camel Case로 수정해야함
+            };
+            yield put(ActionCreators.requestGetPlanTemplateSuccess(payload));
+        }
+    } catch (error) {
+        console.log(error);
+        yield put(ActionCreators.requestGetPlanTemplateFailure({error}));
+    }
+}
+
 export function* watcher() {
     yield takeLatest(ActionTypes.REQUEST_GET_PLAN_TEMPLATE_LIST, getPlanTemplateList);
+    yield takeLatest(ActionTypes.REQUEST_GET_PLAN_TEMPLATE, getPlanTemplate);
 }

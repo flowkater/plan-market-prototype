@@ -9,13 +9,16 @@ class PlanTemplateList extends Component {
     constructor(props) {
         super(props);
 
-        this.toPlanTemplateItem = this.toPlanTemplateItem.bind(this);
-
-        console.log(this.props);
+        this.toPlanTemplateItem = this.toPlanTemplateItem.bind(this)
     }
 
     toPlanTemplateItem(planTemplate, index) {
-        return <PlanTemplateItem key={index} planTemplate={planTemplate} />;
+        return (
+            <PlanTemplateItem 
+                key={index} 
+                planTemplate={planTemplate}
+                requestGetPlanTemplate={this.props.requestGetPlanTemplate}/>
+        )
     }
 
     componentDidMount() {
@@ -24,6 +27,7 @@ class PlanTemplateList extends Component {
 
     render() {
         const { planTemplateList } = this.props;
+      
         return (
             <div className="PlanTemplateList">
                 <div className="PlanTemplateItemContainer">
