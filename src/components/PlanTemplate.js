@@ -2,14 +2,9 @@ import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { TaskTemplateTable, ConditionTable } from '.';
 import './PlanTemplate.scss'
+import { convertNewLineToBr } from '../utils/stringConverter'
 
 class PlanTemplate extends Component {
-    convertNewLine(text) {
-        return (text.split('\n').map((item, key) => {
-            return <p key={key}>{item}<br/></p>
-        }))
-    }
-
     componentWillMount() {
         const { match, planTemplate } = this.props
 
@@ -27,7 +22,7 @@ class PlanTemplate extends Component {
                     <ModalHeader>{planTemplate.name}</ModalHeader>
                     <ModalBody>
                         <ConditionTable conditions={planTemplate.conditions}/>
-                        {this.convertNewLine(planTemplate.description)}
+                        {convertNewLineToBr(planTemplate.description)}
                         <TaskTemplateTable taskTemplates={planTemplate.task_templates} />
                     </ModalBody>
                     <ModalFooter>
