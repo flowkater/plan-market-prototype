@@ -1,7 +1,11 @@
-.day_of_week_col {
-    width: 14.2857%;
-}
-
-td {
-    font-size: 80%;
+.TaskTemplateTable {
+    overflow-x: scroll;
+    &>div {
+        table {
+            min-width: 1000px;
+        }
+        th, td {
+            width: 14.2857%;
+        }
+    }
 }
