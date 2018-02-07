@@ -1,23 +1,15 @@
 import React, { Component } from 'react'
 import { Table } from 'reactstrap';
 
+const conditionNameMap = {
+    level: "학습자 수준", 
+    due: "시험까지 남은 기간",
+    term: "학습 기간",
+    repeat: "회독 횟수"
+}
+
 class ConditionTable extends Component {
     render() {
-        let title_from = (condition) => {
-            switch (condition.name) {
-                case 'level':
-                    return "학습자 수준";
-                case 'due':
-                    return "시험까지 남은 기간";
-                case 'term':
-                    return "학습 기간";
-                case 'repeat':
-                    return "회독 횟수";
-                default:
-                    return ""
-            }
-        }
-
         let value_from = (condition) => {
             switch (condition.value_type) {
                 case 'int':
@@ -39,7 +31,7 @@ class ConditionTable extends Component {
                             this.props.conditions.map((condition, index) => {
                                 return (
                                     <tr key={index}>
-                                        <th>{title_from(condition)}</th>
+                                        <th>{conditionNameMap[condition.name]}</th>
                                         <td>{value_from(condition)}</td>
                                     </tr>
                                 )
