@@ -5,7 +5,7 @@ import { PlanTemplate } from "../components"
 
 const mapStateToProps = state => {
     return {
-        planTemplate: state.planTemplate.get("planTemplate").toJS()
+        planTemplate: state.planTemplate.get("planTemplate") ? state.planTemplate.get("planTemplate").toJS() : null
     }
 }
 

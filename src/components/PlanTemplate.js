@@ -16,8 +16,8 @@ class PlanTemplate extends Component {
     
     render() {
         const { planTemplate } = this.props
-        return (
-            <div>        
+        return (planTemplate ? (
+            <div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>{planTemplate.name}</ModalHeader>
                 <ModalBody>
@@ -30,6 +30,7 @@ class PlanTemplate extends Component {
                 </ModalFooter>
                 </Modal>
             </div>
+            ) : (<div></div>)
         )
     }
 }
