@@ -11,7 +11,7 @@ const conditionNameMap = {
 
 class ConditionTable extends Component {
     render() {
-        let value_from = (condition) => {
+        let valueFrom = (condition) => {
             switch (condition.value_type) {
                 case 'int':
                     return condition.int_value;
@@ -33,7 +33,7 @@ class ConditionTable extends Component {
                                 return (
                                     <tr key={index}>
                                         <th>{conditionNameMap[condition.name]}</th>
-                                        <td>{value_from(condition)}</td>
+                                        <td>{valueFrom(condition)}</td>
                                     </tr>
                                 )
                             })
