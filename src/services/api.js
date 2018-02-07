@@ -11,5 +11,6 @@ const res = axios.create({
     }
 });
 
+export const createPlanTemplate = data => res.post("/plan_templates", data);
 export const getPlanTemplateList = data => res.get("/plan_templates");
 export const getPlanTemplate = planTemplateId => res.get("/plan_templates/" + planTemplateId);
