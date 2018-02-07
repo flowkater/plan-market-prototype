@@ -38,7 +38,7 @@ class TaskTemplateTable extends Component {
                         <td>{selectTaskTemplatesOn('tuesday')}</td>
                         <td>{selectTaskTemplatesOn('wednesday')}</td>
                         <td>{selectTaskTemplatesOn('thursday')}</td>
-                        <td>{selectTaskTemplatesOn('thursday')}</td>
+                        <td>{selectTaskTemplatesOn('friday')}</td>
                         <td>{selectTaskTemplatesOn('saturday')}</td>
                         <td>{selectTaskTemplatesOn('sunday')}</td>
                     </tr>
