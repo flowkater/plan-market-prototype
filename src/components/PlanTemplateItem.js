@@ -6,13 +6,12 @@ import "./PlanTemplateItem.scss";
 
 class PlanTemplateItem extends Component {
     render() {
-        const { planTemplate, requestGetPlanTemplate } = this.props;
+        const { planTemplate } = this.props;
         return (
             <div className="PlanTemplateItem">
                 <Link
                     className="PlanTemplateItemButton"
                     to={`/plan_templates/${planTemplate.id}`}
-                    onClick={() => requestGetPlanTemplate({planTemplateId: planTemplate.id})}
                 >
                     <h4 className="Name">{planTemplate.name}</h4>
                     <p className="Description">{planTemplate.description}</p>

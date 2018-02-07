@@ -1,36 +1,43 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Link } from "react-router-dom";
 import { TaskTemplateTable, ConditionTable } from '.';
-import './PlanTemplate.scss'
 import { convertNewLineToBr } from '../utils/stringConverter'
+import './PlanTemplate.scss'
 
 class PlanTemplate extends Component {
     componentWillMount() {
-        const { match, planTemplate } = this.props
+        
+        const { match } = this.props
 
-        if(match.params.plan_template_id && !planTemplate) {
-            this.props.requestGetPlanTemplate({planTemplateId: match.params.plan_template_id})
-        }
+        this.props.requestGetPlanTemplate({planTemplateId: match.params.plan_template_id})
     }
-    
+
     render() {
         const { planTemplate } = this.props
-
-        return (planTemplate ? (
-            <div className="PlanTemplate">
+        const modal = (
+            planTemplate ? (
                 <Modal isOpen={this.props.PlanTemplate !== null}>
-                    <ModalHeader>{planTemplate.name}</ModalHeader>
+                    <ModalHeader>{this.props.planTemplate.name}</ModalHeader>
                     <ModalBody>
-                        <ConditionTable conditions={planTemplate.conditions}/>
-                        {convertNewLineToBr(planTemplate.description)}
-                        <TaskTemplateTable taskTemplates={planTemplate.task_templates} />
+                        <ConditionTable conditions={this.props.planTemplate.conditions}/>
+                        {convertNewLineToBr(this.props.planTemplate.description)}
+                        <TaskTemplateTable taskTemplates={this.props.planTemplate.task_templates} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={this.props.storeSetPlanTemplateToNull}>닫기</Button>
+                        <Link to='/plan_templates'>
+                            <Button color="secondary" onClick={this.props.storeSetPlanTemplateToNull}>닫기</Button>
+                        </Link>
                     </ModalFooter>
                 </Modal>
-            </div>
             ) : (<div></div>)
+        )
+
+
+        return (
+            <div className="PlanTemplate">
+                {modal}
+            </div>
         )
     }
 }
