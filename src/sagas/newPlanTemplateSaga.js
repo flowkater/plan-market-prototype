@@ -4,7 +4,7 @@ import * as newPlanTemplateActions from '../modules/newPlanTemplate'
 import * as alertActions from "../modules/alert";
 import { formValueSelector } from 'redux-form/immutable';
 
-import * as api from '../api';
+import * as api from "../services/api";
 
 function* postPlanTemplateSaga(action) {
     try {
@@ -45,7 +45,7 @@ function* postPlanTemplateSaga(action) {
         
         console.log(data);
 
-        const payload = yield call(api.postPlanTemplate, data);
+        const payload = yield call(api.createPlanTemplate, data);
 
         if(payload.data.plan_template) {
             yield put(newPlanTemplateActions.successPostPlanTemplate())
