@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import PlanTemplateItem from "./PlanTemplateItem"
+import PlanTemplateItem from "./PlanTemplateItem";
+
+import "./PlanTemplateList.scss";
 
 class PlanTemplateList extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.toPlanTemplateItem = this.toPlanTemplateItem.bind(this)
     }
@@ -20,23 +22,25 @@ class PlanTemplateList extends Component {
     }
 
     componentDidMount() {
-        this.props.requestGetPlanTemplateList()
+        this.props.requestGetPlanTemplateList();
     }
 
     render() {
-        const { planTemplateList } = this.props
-
+        const { planTemplateList } = this.props;
+      
         return (
-            <div>
-                {planTemplateList.map(this.toPlanTemplateItem)}
+            <div className="PlanTemplateList">
+                <div className="PlanTemplateItemContainer">
+                    {planTemplateList.map(this.toPlanTemplateItem)}
+                </div>
             </div>
-        )
+        );
     }
 }
 
 PlanTemplateList.propTypes = {
     planTemplateList: PropTypes.array.isRequired,
     requestGetPlanTemplateList: PropTypes.func.isRequired
-}
+};
 
-export default PlanTemplateList
+export default PlanTemplateList;
