@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     requestGetPlanTemplate: (PlanTemplateId) => dispatch(ActionCreators.requestGetPlanTemplate(PlanTemplateId)),
-    closeModal: () => dispatch(ActionCreators.closeModal())
+    storeSetPlanTemplateToNull: () => dispatch(ActionCreators.storeSetPlanTemplateToNull())
 })
 
 const PlanTemplateContainer = connect(mapStateToProps, mapDispatchToProps)(PlanTemplate)

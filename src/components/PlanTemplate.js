@@ -31,7 +31,7 @@ class PlanTemplate extends Component {
                         <TaskTemplateTable taskTemplates={planTemplate.task_templates} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={this.props.closeModal}>닫기</Button>
+                        <Button color="secondary" onClick={this.props.storeSetPlanTemplateToNull}>닫기</Button>
                     </ModalFooter>
                 </Modal>
             </div>
