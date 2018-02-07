@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import { Table } from 'reactstrap';
 import { TaskTemplateItem } from '.'
+import './TaskTemplateTable.scss'
 
 class TaskTemplateTable extends Component {
     render() {
         return (
-            <Table>
+            <Table bordered>
                 <thead>
                     <tr>
-                        <th>월</th>
-                        <th>화</th>
-                        <th>수</th>
-                        <th>목</th>
-                        <th>금</th>
-                        <th>토</th>
-                        <th>일</th>
+                        <th className="day_of_week_col">월</th>
+                        <th className="day_of_week_col">화</th>
+                        <th className="day_of_week_col">수</th>
+                        <th className="day_of_week_col">목</th>
+                        <th className="day_of_week_col">금</th>
+                        <th className="day_of_week_col">토</th>
+                        <th className="day_of_week_col">일</th>
                     </tr>
                 </thead>
                 <tbody>
