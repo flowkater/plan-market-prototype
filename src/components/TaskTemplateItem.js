@@ -4,12 +4,21 @@ import { Card, CardTitle, CardText, CardFooter } from 'reactstrap';
 import './TaskTemplateItem.scss'
 import { convertNewLineToBr } from '../utils/stringConverter'
 
+const taskTemplateTypeMap = {
+    preview: "예습",
+    learning: "학습",
+    review: "복습",
+    예습: "예습",
+    학습: "학습",
+    복습: "복습"
+}
+
 class TaskTemplateItem extends Component {
     render() {
         const { TaskTemplate } = this.props
         return (
             <Card body>
-                <CardTitle>[{TaskTemplate.task_template_type}] {TaskTemplate.name}: {TaskTemplate.amount}{TaskTemplate.unit}</CardTitle>
+                <CardTitle>[{taskTemplateTypeMap[TaskTemplate.task_template_type]}] {TaskTemplate.name}: {TaskTemplate.amount}{TaskTemplate.unit}</CardTitle>
                 <CardText>
                     {convertNewLineToBr(TaskTemplate.description)}
                 </CardText>
