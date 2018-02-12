@@ -3,19 +3,19 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
 
-import planTemplate from './planTemplate';
-import newTaskTemplateList from './newTaskTemplateList';
-import newPlanTemplate from "./newPlanTemplate";
+import getRecipe from './getRecipe';
+import taskForm from './taskForm';
+import createRecipe from "./createRecipe";
 import alert from "./alert";
 
 
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from "../sagas"
+import rootSaga from "./rootSaga";
 
 const reducer = combineReducers({
-    planTemplate,
-    newTaskTemplateList,
-    newPlanTemplate,
+    getRecipe,
+    taskForm,
+    createRecipe,
     alert,
     form: formReducer
 });;

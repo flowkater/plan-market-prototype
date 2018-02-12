@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Root } from './containers';
+import Root from 'containers/Root';
 import { AppContainer } from "react-hot-loader";
 
-
-import configureStore from "./modules/configureStore";
+import configureStore from "modules/configureStore";
 
 const store = configureStore();
 const rootEl = document.getElementById('root');
