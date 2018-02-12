@@ -9,7 +9,7 @@ class RecipeListItem extends Component {
             <div className="PlanTemplateItem">
                 <Link
                     className="PlanTemplateItemButton"
-                    to={`/plan_templates/${recipe.id}`}
+                    to={`/recipes/${recipe.id}`}
                 >
                     <h4 className="Name">{recipe.name}</h4>
                     <p className="Description">{recipe.description}</p>

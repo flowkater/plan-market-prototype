@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { 
     CreatePage,
     ListPage,
-    // ShowPage
+    ShowPage
 } from "./Routes";
 
 class Routes extends Component {
@@ -11,9 +11,9 @@ class Routes extends Component {
         return (
             <div>
                 <Route exact path="/" component={ ListPage } />
-                <Route path="/plan_templates" component={ ListPage } />
-                }
-                <Route path="/new" component={ CreatePage } />
+                <Route path="/recipes" component={ ListPage } />
+                <Route path="/recipes/:recipe_id" component={ ShowPage } /> 
+                <Route path="/new" component={ CreatePage } />                
             </div>
         );
     }
@@ -21,4 +21,3 @@ class Routes extends Component {
 
 export default Routes;
 
-{/* <Route path="/plan_templates/:plan_template_id" component={ ShowPage } />  */}

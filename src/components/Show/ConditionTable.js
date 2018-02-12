@@ -25,22 +25,20 @@ class ConditionTable extends Component {
         }
 
         return (
-            <div>
-                <Table>
-                    <tbody>
-                        {
-                            this.props.conditions.map((condition, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <th>{conditionNameMap[condition.name]}</th>
-                                        <td>{valueFrom(condition)}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </Table>
-            </div>
+            <Table>
+                <tbody>
+                    {
+                        this.props.conditions.map((condition, index) => {
+                            return (
+                                <tr key={index}>
+                                    <th>{conditionNameMap[condition.name]}</th>
+                                    <td>{valueFrom(condition)}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </Table>
         )
     }
 }

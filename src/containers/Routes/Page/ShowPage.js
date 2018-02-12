@@ -1,19 +1,41 @@
-// import { connect } from "react-redux"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux";
 
-// import * as ActionCreators from "actions"
-// import { PlanTemplate } from "components"
+import RecipeModal from "components/Show/RecipeModal"
+import * as getRecipeActions from "modules/getRecipe";
 
-// const mapStateToProps = state => {
-//     return {
-//         planTemplate: state.planTemplate.get("planTemplate") ? state.planTemplate.get("planTemplate").toJS() : null
-//     }
-// }
+import React, { Component } from 'react';
 
-// const mapDispatchToProps = dispatch => ({
-//     requestGetPlanTemplate: (PlanTemplateId) => dispatch(ActionCreators.requestGetPlanTemplate(PlanTemplateId)),
-//     storeSetPlanTemplateToNull: () => dispatch(ActionCreators.storeSetPlanTemplateToNull())
-// })
+class ShowPage extends Component {
 
-// const ShowPage = connect(mapStateToProps, mapDispatchToProps)(PlanTemplate)
+    handleGetRecipeId = (id) => this.props.GetRecipeActions.requestGetRecipe(id)
+    handleSetReceipeToNull = () => this.props.GetRecipeActions.setRecipeToNull()
 
-// export default ShowPage
+    render() {
+        const { recipe, match, status } = this.props;
+
+        return (
+            <RecipeModal
+                recipe={recipe}
+                status={status}
+                match={match}
+                onGetRecipe={
+                    this.handleGetRecipeId
+                }
+                onSetRecipeToNull={
+                    this.handleSetReceipeToNull
+                }
+            />
+        );
+    }
+}
+
+export default connect(
+    state => ({
+        recipe: state.getRecipe.get("recipe").toJS(),
+        status: state.getRecipe.get("showStatus")
+    }),
+    dispatch => ({
+        GetRecipeActions: bindActionCreators(getRecipeActions, dispatch)
+    })
+)(ShowPage);

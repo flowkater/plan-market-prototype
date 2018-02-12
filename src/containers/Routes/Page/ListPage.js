@@ -13,13 +13,10 @@ class ListPage extends Component {
     }
 
     render() {
-        const { recipeList, GetRecipeActions } = this.props;
+        const { recipeList } = this.props;
         return (
             <RecipeList 
                 recipeList={recipeList}
-                onGetRecipe={
-                    GetRecipeActions.requestGetRecipe
-                }
             />
         );
     }
@@ -27,7 +24,7 @@ class ListPage extends Component {
 
 export default connect(
     state => ({
-        recipeList: state.getRecipe.get("recipeList").toJS()
+        recipeList: state.getRecipe.get("recipeList").toJS(),
     }),
     dispatch => ({
         GetRecipeActions: bindActionCreators(getRecipeActions, dispatch)

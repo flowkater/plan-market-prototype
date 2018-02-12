@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { Card, CardTitle, CardText, CardFooter } from 'reactstrap';
-import './TaskTemplateItem.scss'
-import { convertNewLineToBr } from '../utils/stringConverter'
+import { convertNewLineToBr } from 'helpers/stringConverter'
 
 const taskTemplateTypeMap = {
     preview: "예습",
@@ -13,23 +12,23 @@ const taskTemplateTypeMap = {
     복습: "복습"
 }
 
-class TaskTemplateItem extends Component {
+class TaskItem extends Component {
     render() {
-        const { TaskTemplate } = this.props
+        const { Task } = this.props
         return (
             <Card body>
-                <CardTitle>[{taskTemplateTypeMap[TaskTemplate.task_template_type]}] {TaskTemplate.name}: {TaskTemplate.amount}{TaskTemplate.unit}</CardTitle>
+                <CardTitle>[{taskTemplateTypeMap[Task.task_template_type]}] {Task.name}: {Task.amount}{Task.unit}</CardTitle>
                 <CardText>
-                    {convertNewLineToBr(TaskTemplate.description)}
+                    {convertNewLineToBr(Task.description)}
                 </CardText>
-                <CardFooter className="text-muted">예상 학습시간: {TaskTemplate.learning_minutes}분</CardFooter>
+                <CardFooter className="text-muted">예상 학습시간: {Task.learning_minutes}분</CardFooter>
             </Card>
         )
     }
 }
 
-TaskTemplateItem.propTypes = {
-    TaskTemplate: PropTypes.shape({
+TaskItem.propTypes = {
+    Task: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
@@ -55,4 +54,4 @@ TaskTemplateItem.propTypes = {
         sunday_order: PropTypes.number
     }).isRequired
 };
-export default TaskTemplateItem
+export default TaskItem

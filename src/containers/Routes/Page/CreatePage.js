@@ -59,12 +59,8 @@ class CreatePage extends Component {
 
 export default connect(
     state => ({
-        taskList: state.taskForm
-            .get("taskList")
-            .toJS(),
-        taskItem: state.taskForm
-            .get("taskItem")
-            .toJS(),
+        taskList: state.taskForm.get("taskList").toJS(),
+        taskItem: state.taskForm.get("taskItem").toJS(),
         formType: state.taskForm.get("formType"),
         toggle: state.taskForm.get("toggle"),
         alertStatus: state.alert.get("status"),

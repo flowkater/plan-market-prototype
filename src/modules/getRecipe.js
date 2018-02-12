@@ -9,7 +9,7 @@ const initialState = fromJS({
     indexStatus: 'INIT',
     showStatus: 'INIT',
     recipeList: [],
-    recipe: null
+    recipe: {}
 });
 
 const REQUEST_GET_RECIPE_LIST = "getRecipe/REQUEST_GET_RECIPE_LIST";
@@ -39,7 +39,9 @@ export default handleActions(
             return state.set("indexStatus", "WAITING");
         },
         [SUCCESS_GET_RECIPE_LIST]: (state, action) => {
-            return state.set("recipeList", fromJS(action.payload.planTemplateList));
+            return state
+                .set("indexStatus", "SUCCESS")
+                .set("recipeList", fromJS(action.payload.planTemplateList));
         },
         [FAILURE_GET_RECIPE_LIST]: (state, action) => {
             return state.set("indexStatus", "FAILURE");
@@ -48,7 +50,9 @@ export default handleActions(
             return state.set("showStatus", "WAITING");
         },
         [SUCCESS_GET_RECIPE]: (state, action) => {
-            return state.set("recipe", fromJS(action.payload.planTemplate));
+            return state
+                .set("showStatus", "SUCCESS")
+                .set("recipe", fromJS(action.payload.planTemplate));
         },
         [FAILURE_GET_RECIPE]: (state, action) => {
             return state.set("showStatus", "FAILURE");
@@ -72,13 +76,13 @@ function* getRecipeList(action) {
         }
     } catch (error) {
         console.log(error);
-        yield put(FAILURE_GET_RECIPE_LIST({error}));
+        yield put(failureGetRecipeList({error}));
     }
 }
 
 function* getRecipe(action) {
     try {
-        const response = yield call(api.getPlanTemplate, action.payload.planTemplateId)
+        const response = yield call(api.getPlanTemplate, action.payload.recipeId)
         if (response.data.plan_template) {
             const payload = {
                 planTemplate: response.data.plan_template // TODO: JSON 네이밍을 Camel Case로 수정해야함
