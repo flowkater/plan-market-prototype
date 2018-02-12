@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
+import { ConnectedRouter as Router } from "react-router-redux";
 import { Provider } from "react-redux";
 import App from "./App";
 
 class Root extends Component {
     render() {
-        const { store } = this.props;
+        const { store, history } = this.props;
 
         return (
             <Provider store={store}>
-                <Router>
+                <Router history={history}>
                     <App />
                 </Router>
             </Provider>

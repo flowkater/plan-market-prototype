@@ -7,6 +7,9 @@ import { formValueSelector } from "redux-form/immutable";
 import * as api from "helpers/api";
 
 import * as alertActions from "./alert";
+import * as taskFormActions from "./taskForm";
+
+import { push } from "react-router-redux";
 
 const REQUEST_POST_RECIPE = "createRecipe/REQUEST_POST_RECIPE";
 const SUCCESS_POST_RECIPE = "createRecipe/SUCCESS_POST_RECIPE";
@@ -21,7 +24,7 @@ const initialState = Map({
     recipe: Map({
 
     }),
-    recipeId: null
+    recipeId: -1
 });
 
 export default handleActions(
@@ -96,11 +99,14 @@ function* postRecipeSaga(action) {
     }
 }
 
-function* successAlertStatusSaga(action) {
+function* successPostRecipeSaga(action) {
+    console.log(`/recipes/${action.payload.recipeId}`);
     yield put(alertActions.setAlert("SUCCESS"));
+    yield put(push(`/recipes/${action.payload.recipeId}`));
+    yield put(taskFormActions.clearTaskList());
 }
 
-function* failureAlertStatusSaga(action) {
+function* failurePostRecipeSaga(action) {
     yield put(alertActions.setAlert("FAILURE"));
 }
 
@@ -111,10 +117,10 @@ export function* watchCreateRecipe() {
     );
     yield takeLatest(
         SUCCESS_POST_RECIPE,
-        successAlertStatusSaga
+        successPostRecipeSaga
     );
     yield takeLatest(
         FAILURE_POST_RECIPE,
-        failureAlertStatusSaga
+        failurePostRecipeSaga
     );
 }

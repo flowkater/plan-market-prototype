@@ -9,8 +9,6 @@ import * as taskFormActions from "modules/taskForm";
 import * as createRecipeActions from "modules/createRecipe";
 import * as alertActions from "modules/alert";
 
-import Redirect from "react-router-dom/Redirect";
-
 class CreatePage extends Component {
     render() {
         const {
@@ -20,7 +18,6 @@ class CreatePage extends Component {
             TaskFormActions,
             AlertActions,
             alertStatus,
-            recipeId,
             formType,
             toggle
         } = this.props;
@@ -28,10 +25,6 @@ class CreatePage extends Component {
         if (alertStatus === "SUCCESS") {
             Alert.success("<h1>전송 성공!!</h1>");
             AlertActions.setAlert("NOTHING");
-
-            if (recipeId) {
-                return <Redirect to={`/plan_templates/${recipeId}`} />;
-            }
         } else if (alertStatus === "FAILURE") {
             Alert.error("<h1>전송 실패..</h1>");
             AlertActions.setAlert("NOTHING");
@@ -64,7 +57,6 @@ export default connect(
         formType: state.taskForm.get("formType"),
         toggle: state.taskForm.get("toggle"),
         alertStatus: state.alert.get("status"),
-        recipeId: state.createRecipe.get("recipeId")
     }),
     dispatch => ({
         TaskFormActions: bindActionCreators(

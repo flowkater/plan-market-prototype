@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { Map, List, fromJS } from 'immutable';
 import { createAction, handleActions } from "redux-actions";
 
 const ADD_NEW_TASK = "taskForm/ADD_NEW_TASK";
@@ -9,6 +9,7 @@ const UP_NEW_TASK = "taskForm/UP_NEW_TASK";
 const DOWN_NEW_TASK = "taskForm/DOWN_NEW_TASK";
 const REMOVE_NEW_TASK = "taskForm/REMOVE_NEW_TASK";
 const TOGGLE_NEW_TASK = "taskForm/TOGGLE_NEW_TASK";
+const CLEAR_TASK_LIST = "taskForm/CLEAR_TASK_LIST";
 
 
 export const addNewTask = createAction(ADD_NEW_TASK); // task
@@ -19,6 +20,7 @@ export const upNewTask = createAction(UP_NEW_TASK); // index
 export const downNewTask = createAction(DOWN_NEW_TASK); // index
 export const removeNewTask = createAction(REMOVE_NEW_TASK); // index
 export const toggleNewTask = createAction(TOGGLE_NEW_TASK); // toggle
+export const clearTaskList = createAction(CLEAR_TASK_LIST);
 
 const initialState = fromJS({
     taskList: [],
@@ -183,5 +185,8 @@ export default handleActions ({
     },
     [TOGGLE_NEW_TASK]: (state, action) => {
         return state.set('toggle', action.payload);
+    },
+    [CLEAR_TASK_LIST]: (state, action) => {
+        return state.set('taskList', List([]))
     }
 }, initialState);
