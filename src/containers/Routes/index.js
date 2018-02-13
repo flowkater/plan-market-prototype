@@ -3,7 +3,9 @@ import { Route } from "react-router-dom";
 import { 
     CreatePage,
     ListPage,
-    ShowPage
+    ShowPage,
+    LoginPage,
+    RegisterPage 
 } from "./Routes";
 
 class Routes extends Component {
@@ -13,7 +15,9 @@ class Routes extends Component {
                 <Route exact path="/" component={ ListPage } />
                 <Route path="/recipes" component={ ListPage } />
                 <Route path="/recipes/:recipe_id" component={ ShowPage } /> 
-                <Route path="/new" component={ CreatePage } />                
+                <Route path="/new" component={ CreatePage } />
+                <Route path="/login" component={ LoginPage } />
+                <Route path="/register" component={ RegisterPage } />
             </div>
         );
     }
