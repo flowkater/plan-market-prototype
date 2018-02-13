@@ -3,17 +3,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as auth from 'modules/auth'
-import { Link } from "react-router-dom";
+
+import LoginForm from "components/Login/LoginForm";
+
+import { Container } from "reactstrap";
+import storage from 'helpers/storage';
+
 
 class LoginPage extends Component {
+    handleLogin = () => {
+        const { AuthActions } = this.props;
+
+        AuthActions.requestLogin()
+    }
+
+    componentWillMount() {
+        const { AuthActions } = this.props;
+
+        const user = storage.get('__PRTD_USER__');
+        console.log(user);
+
+        if(user) {
+            console.log("redirectRoot")
+            AuthActions.redirectRoot();
+        }
+    }
+
     render() {
         return (
-            <div>
-                <h1>Login Page</h1>
-                <Link to='/register'>
-                    회원가입
-                </Link>
-            </div>
+            <Container>
+                <LoginForm
+                    onLogin={this.handleLogin} />
+            </Container>
         );
     }
 }

@@ -11,45 +11,16 @@ import Header from 'components/Base/Header'
 import Routes from "./Routes";
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router";
 
-import * as auth from 'modules/auth'
-import storage from 'helpers/storage';
+import UserLoader from "./UserLoader";
 
 class App extends Component {
-
-    checkLoginStatus = () => {
-        const { AuthActions } = this.props;
-
-        const user = storage.get('__PRTD_USER__');
-        let token;
-
-        if(user) {
-            AuthActions.setUser(user);
-            token = user.token
-        }
-
-        AuthActions.checkLoginStatus();
-
-        if(token) {
-            
-            console.log("success Login!")
-        } else {
-            console.log("Not Login");
-            AuthActions.noAuth();
-        }
-    }
-    
-    componentWillMount() {
-        this.checkLoginStatus();
-    }
-
     render() {
-        const { status } = this.props;
+        const { status, user } = this.props;
         return (
             <div className="App">
-                {status === "SUCCESS" ? (<Header />) : null}
+                {status === "SUCCESS" || user.access_token ? (<Header />) : null}
                 <Routes />       
                 <Alert 
                     effect='jelly'
@@ -57,6 +28,7 @@ class App extends Component {
                     timeout={5000}
                     position='top-right'   
                     html={true} />
+                <UserLoader />
             </div>
         );
     }
@@ -64,12 +36,10 @@ class App extends Component {
 
 export default withRouter(connect(
     state => ({
-        user: state.auth.get('user'),
+        user: state.auth.get('user').toJS(),
         status: state.auth.get('status')
     }),
-    dispatch => ({
-        AuthActions: bindActionCreators(auth, dispatch)
-    })
+    null
 )(App));
 
 
