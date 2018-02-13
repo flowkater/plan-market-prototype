@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
+
 import Alert from "react-s-alert";
+import Header from 'components/Base/Header'
 
-import { PlanTemplateListContainer, NewPlanTemplate, PlanTemplateContainer } from ".";
-import { AppNavbar, Home } from '../components'
-
-import '../styles/utils.scss';
-import './App.scss';
+// routes
+import Routes from "./Routes";
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <AppNavbar />
-                <Route exact path="/" component={ Home } />
-                <Route path="/plan_templates" component={ PlanTemplateListContainer } />
-                <Route path="/plan_templates/:plan_template_id" component={ PlanTemplateContainer } />
-                <Route path="/new" component={ NewPlanTemplate } />
+                <Header />
+                <Routes />       
                 <Alert 
                     effect='jelly'
                     stack={{limit: 3}} 

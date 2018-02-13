@@ -53,4 +53,5 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   styles: resolveApp('src/styles'),
+  appStyle: resolveApp('src/styles/main.scss'),
 };
