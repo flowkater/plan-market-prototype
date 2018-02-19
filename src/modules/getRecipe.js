@@ -65,7 +65,7 @@ export default handleActions(
 );
 
 
-function* getRecipeList(action) {
+function* getRecipeListSaga(action) {
     try {
         const response = yield call(api.getPlanTemplateList)
         if (response.data.plan_templates) {
@@ -80,7 +80,7 @@ function* getRecipeList(action) {
     }
 }
 
-function* getRecipe(action) {
+function* getRecipeSaga(action) {
     try {
         const response = yield call(api.getPlanTemplate, action.payload.recipeId)
         if (response.data.plan_template) {
@@ -96,6 +96,6 @@ function* getRecipe(action) {
 }
 
 export function* watchGetRecipe() {
-    yield takeLatest(REQUEST_GET_RECIPE_LIST, getRecipeList);
-    yield takeLatest(REQUEST_GET_RECIPE, getRecipe);
+    yield takeLatest(REQUEST_GET_RECIPE_LIST, getRecipeListSaga);
+    yield takeLatest(REQUEST_GET_RECIPE, getRecipeSaga);
 }

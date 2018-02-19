@@ -11,6 +11,10 @@ const res = axios.create({
     }
 });
 
+export const postRegister = data => res.post("/auth/register", data);
+export const postLogin = data => res.post("/auth/login", data);
+export const postValidate = data => res.post("/auth/validate", data);
+
 export const createPlanTemplate = data => res.post("/plan_templates", data);
 export const getPlanTemplateList = data => res.get("/plan_templates");
 export const getPlanTemplate = planTemplateId => res.get("/plan_templates/" + planTemplateId);
