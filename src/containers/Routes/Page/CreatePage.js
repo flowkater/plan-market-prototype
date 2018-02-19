@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import Alert from "react-s-alert";
 import { Container } from "reactstrap";
 
-import PlanTemplateForm from "components/Create/RecipeForm";
+import RecipeForm from "components/Create/RecipeForm";
 import * as taskFormActions from "modules/taskForm";
 import * as createRecipeActions from "modules/createRecipe";
 import * as alertActions from "modules/alert";
@@ -33,7 +33,7 @@ class CreatePage extends Component {
         return (
             <Container>
                 <h1>새로운 계획 작성</h1>
-                <PlanTemplateForm
+                <RecipeForm
                     CreateRecipeActions={
                         CreateRecipeActions
                     }

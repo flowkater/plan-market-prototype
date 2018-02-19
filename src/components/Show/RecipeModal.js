@@ -35,7 +35,7 @@ class RecipeModal extends Component {
         )
 
         return (
-            <div className="PlanTemplate">
+            <div className="Recipe">
                 {modal}
             </div>
         )

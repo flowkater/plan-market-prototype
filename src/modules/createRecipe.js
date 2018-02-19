@@ -54,7 +54,7 @@ function* postRecipeSaga(action) {
             "taskList"
         );
         const data = {
-            plan_template: {
+            recipe: {
                 name: selector(state, "name"),
                 description: selector(state, "description"),
                 conditions: [
@@ -84,12 +84,12 @@ function* postRecipeSaga(action) {
         };
 
         console.log(data);
-        const payload = yield call(api.createPlanTemplate, data);
+        const payload = yield call(api.createRecipe, data);
 
-        if (payload.data.plan_template) {
+        if (payload.data.recipe) {
             yield put(
                 successPostRecipe({
-                    recipeId: payload.data.plan_template.id
+                    recipeId: payload.data.recipe.id
                 })
             );
         }

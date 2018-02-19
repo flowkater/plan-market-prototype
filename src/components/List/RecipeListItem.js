@@ -6,9 +6,9 @@ class RecipeListItem extends Component {
     render() {
         const { recipe } = this.props;
         return (
-            <div className="PlanTemplateItem">
+            <div className="RecipeItem">
                 <Link
-                    className="PlanTemplateItemButton"
+                    className="RecipeItemButton"
                     to={`/recipes/${recipe.id}`}
                 >
                     <h4 className="Name">{recipe.name}</h4>

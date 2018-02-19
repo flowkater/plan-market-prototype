@@ -7,8 +7,8 @@ class RecipeList extends Component {
         const { recipeList } = this.props;
       
         return (
-            <div className="PlanTemplateList">
-                <div className="PlanTemplateItemContainer">
+            <div className="RecipeList">
+                <div className="RecipeItemContainer">
                     {recipeList.map((recipe, index) => (
                         <RecipeListItem 
                             key={index} 
