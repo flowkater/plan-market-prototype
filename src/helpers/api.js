@@ -4,7 +4,7 @@ import storage from 'helpers/storage';
 const URL = "http://127.0.0.1:5000";
 // const URL = "https://55x12biogf.execute-api.ap-northeast-2.amazonaws.com/staging";
 
-const access_token = storage.get('__PRTD_USER__')['access_token']
+const access_token = storage.get('__PRTD_USER__') && storage.get('__PRTD_USER__')['access_token']
 
 // FIXME: access_token 전달
 const res = axios.create({
