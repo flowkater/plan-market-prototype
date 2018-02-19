@@ -57,29 +57,14 @@ function* postRecipeSaga(action) {
             recipe: {
                 name: selector(state, "name"),
                 description: selector(state, "description"),
-                conditions: [
-                    {
-                        name: "level",
-                        value_type: "string",
-                        string_value: selector(state, "level")
-                    },
-                    {
-                        name: "term",
-                        value_type: "int",
-                        int_value: selector(state, "term")
-                    },
-                    {
-                        name: "due",
-                        value_type: "int",
-                        int_value: selector(state, "due")
-                    },
-                    {
-                        name: "repeat",
-                        value_type: "int",
-                        int_value: selector(state, "repeat")
-                    }
-                ],
-                task_templates: taskList.toJS()
+                summary: "",
+                term: selector(state, "term"),
+                remain_days_to_goal: selector(state, "due"),
+                repeat: [].length,
+                repetitions: [],
+                category_ids: [],
+                level_ids: [],
+                material_ids: []
             }
         };
 
