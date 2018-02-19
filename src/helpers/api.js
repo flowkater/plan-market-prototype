@@ -6,6 +6,7 @@ const URL = "http://127.0.0.1:5000";
 
 const access_token = storage.get('__PRTD_USER__')['access_token']
 
+// FIXME: access_token 전달
 const res = axios.create({
     baseURL: URL,
     timeout: 10000,

@@ -53,6 +53,8 @@ function* postRecipeSaga(action) {
         const taskList = state.taskForm.get(
             "taskList"
         );
+        
+        // FIXME: 임시 데이터 삽입
         const data = {
             recipe: {
                 name: selector(state, "name"),
