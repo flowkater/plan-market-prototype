@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Link } from "react-router-dom";
-import ConditionTable from "./ConditionTable";
-import TaskTable from "./TaskTable";
 import { convertNewLineToBr } from 'helpers/stringConverter'
 
 class RecipeModal extends Component {
@@ -21,9 +19,7 @@ class RecipeModal extends Component {
                 <Modal isOpen={recipe !== null}>
                     <ModalHeader>{recipe.name}</ModalHeader>
                     <ModalBody>
-                        <ConditionTable conditions={recipe.conditions}/>
                         {convertNewLineToBr(recipe.description)}
-                        <TaskTable taskList={recipe.task_templates} />
                     </ModalBody>
                     <ModalFooter>
                         <Link to='/recipes'>
@@ -35,7 +31,7 @@ class RecipeModal extends Component {
         )
 
         return (
-            <div className="PlanTemplate">
+            <div className="Recipe">
                 {modal}
             </div>
         )

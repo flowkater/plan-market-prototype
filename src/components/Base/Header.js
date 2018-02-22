@@ -7,7 +7,7 @@ class Header extends Component {
             <div className="Header">
                 <Link className="navbar-btn" to="/">홈</Link>
                 <Link className="navbar-btn" to="/new">새로운 계획 작성</Link>
-                <Link className="navbar-btn" to="/plan_templates">계획 목록</Link>
+                <Link className="navbar-btn" to="/recipes">계획 목록</Link>
             </div>
         );
     }

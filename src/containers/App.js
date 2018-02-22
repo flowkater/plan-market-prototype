@@ -10,11 +10,17 @@ import Header from 'components/Base/Header'
 // routes
 import Routes from "./Routes";
 
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
+
+import UserLoader from "./UserLoader";
+
 class App extends Component {
     render() {
+        const { status, user } = this.props;
         return (
             <div className="App">
-                <Header />
+                {status === "SUCCESS" || user.access_token ? (<Header />) : null}
                 <Routes />       
                 <Alert 
                     effect='jelly'
@@ -22,9 +28,18 @@ class App extends Component {
                     timeout={5000}
                     position='top-right'   
                     html={true} />
+                <UserLoader />
             </div>
         );
     }
 }
 
-export default App;
+export default withRouter(connect(
+    state => ({
+        user: state.auth.get('user').toJS(),
+        status: state.auth.get('status')
+    }),
+    null
+)(App));
+
+

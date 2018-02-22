@@ -9,6 +9,7 @@ import getRecipe from './getRecipe';
 import taskForm from './taskForm';
 import createRecipe from "./createRecipe";
 import alert from "./alert";
+import auth from "./auth";
 
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from "./rootSaga";
@@ -18,6 +19,7 @@ const reducer = combineReducers({
     taskForm,
     createRecipe,
     alert,
+    auth,
     router: routerReducer,
     form: formReducer
 });;

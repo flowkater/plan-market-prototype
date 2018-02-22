@@ -41,7 +41,7 @@ export default handleActions(
         [SUCCESS_GET_RECIPE_LIST]: (state, action) => {
             return state
                 .set("indexStatus", "SUCCESS")
-                .set("recipeList", fromJS(action.payload.planTemplateList));
+                .set("recipeList", fromJS(action.payload.RecipeList));
         },
         [FAILURE_GET_RECIPE_LIST]: (state, action) => {
             return state.set("indexStatus", "FAILURE");
@@ -52,7 +52,7 @@ export default handleActions(
         [SUCCESS_GET_RECIPE]: (state, action) => {
             return state
                 .set("showStatus", "SUCCESS")
-                .set("recipe", fromJS(action.payload.planTemplate));
+                .set("recipe", fromJS(action.payload.Recipe));
         },
         [FAILURE_GET_RECIPE]: (state, action) => {
             return state.set("showStatus", "FAILURE");
@@ -65,12 +65,12 @@ export default handleActions(
 );
 
 
-function* getRecipeList(action) {
+function* getRecipeListSaga(action) {
     try {
-        const response = yield call(api.getPlanTemplateList)
-        if (response.data.plan_templates) {
+        const response = yield call(api.getRecipeList)
+        if (response.data.recipes) {
             const payload = {
-                planTemplateList: response.data.plan_templates 
+                RecipeList: response.data.recipes 
             };
             yield put(successGetRecipeList(payload));
         }
@@ -80,12 +80,12 @@ function* getRecipeList(action) {
     }
 }
 
-function* getRecipe(action) {
+function* getRecipeSaga(action) {
     try {
-        const response = yield call(api.getPlanTemplate, action.payload.recipeId)
-        if (response.data.plan_template) {
+        const response = yield call(api.getRecipe, action.payload.recipeId)
+        if (response.data.recipe) {
             const payload = {
-                planTemplate: response.data.plan_template // TODO: JSON 네이밍을 Camel Case로 수정해야함
+                Recipe: response.data.recipe // TODO: JSON 네이밍을 Camel Case로 수정해야함
             };
             yield put(successGetRecipe(payload));
         }
@@ -96,6 +96,6 @@ function* getRecipe(action) {
 }
 
 export function* watchGetRecipe() {
-    yield takeLatest(REQUEST_GET_RECIPE_LIST, getRecipeList);
-    yield takeLatest(REQUEST_GET_RECIPE, getRecipe);
+    yield takeLatest(REQUEST_GET_RECIPE_LIST, getRecipeListSaga);
+    yield takeLatest(REQUEST_GET_RECIPE, getRecipeSaga);
 }

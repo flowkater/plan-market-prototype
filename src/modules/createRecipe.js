@@ -53,43 +53,30 @@ function* postRecipeSaga(action) {
         const taskList = state.taskForm.get(
             "taskList"
         );
+        
+        // FIXME: 임시 데이터 삽입
         const data = {
-            plan_template: {
+            recipe: {
                 name: selector(state, "name"),
                 description: selector(state, "description"),
-                conditions: [
-                    {
-                        name: "level",
-                        value_type: "string",
-                        string_value: selector(state, "level")
-                    },
-                    {
-                        name: "term",
-                        value_type: "int",
-                        int_value: selector(state, "term")
-                    },
-                    {
-                        name: "due",
-                        value_type: "int",
-                        int_value: selector(state, "due")
-                    },
-                    {
-                        name: "repeat",
-                        value_type: "int",
-                        int_value: selector(state, "repeat")
-                    }
-                ],
-                task_templates: taskList.toJS()
+                summary: "",
+                term: selector(state, "term"),
+                remain_days_to_goal: selector(state, "due"),
+                repeat: [].length,
+                repetitions: [],
+                category_ids: [],
+                level_ids: [],
+                material_ids: []
             }
         };
 
         console.log(data);
-        const payload = yield call(api.createPlanTemplate, data);
+        const payload = yield call(api.createRecipe, data);
 
-        if (payload.data.plan_template) {
+        if (payload.data.recipe) {
             yield put(
                 successPostRecipe({
-                    recipeId: payload.data.plan_template.id
+                    recipeId: payload.data.recipe.id
                 })
             );
         }
